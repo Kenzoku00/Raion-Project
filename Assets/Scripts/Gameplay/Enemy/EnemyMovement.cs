@@ -1,25 +1,27 @@
-
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D), typeof(EnemyStats))]
 public class EnemyMovement : MonoBehaviour
 {
-    public float moveSpeed = 3f;
-
-    private Transform player;
     private Rigidbody2D rb;
-    private int damage = 1;
-    private float nextDamageTime = 0f;
+    private EnemyStats stats;
+    private Transform player;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        stats = GetComponent<EnemyStats>();
+
+        rb.gravityScale = 0f;
+        rb.freezeRotation = true;
+    }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         if (playerObject != null)
-        {
             player = playerObject.transform;
-        }
     }
 
     private void FixedUpdate()
@@ -27,21 +29,6 @@ public class EnemyMovement : MonoBehaviour
         if (player == null) return;
 
         Vector2 direction = (player.position - transform.position).normalized;
-
-        rb.linearVelocity = direction * moveSpeed;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && Time.time >= nextDamageTime)
-        {
-            Health health = collision.GetComponent<Health>();
-
-            if (health != null)
-            {
-                health.TakeDamage(damage);
-                nextDamageTime = Time.time + 1f;
-            }
-        }
+        rb.linearVelocity = direction * stats.Speed;
     }
 }

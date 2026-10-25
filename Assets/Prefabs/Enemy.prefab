@@ -1808,7 +1808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e0cec9b1d278489c146e129515ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  moveSpeed: 3
 --- !u!114 &7322718432409334246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1821,4 +1820,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9945bc5287e50348843a02907ddcec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 3
+  data: {fileID: 11400000, guid: 45c991383ae1abd499c854a21ba82eac, type: 2}
