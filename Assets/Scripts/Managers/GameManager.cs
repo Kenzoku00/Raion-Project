@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
 
         audioManager?.Initialize();
         uiManager?.HideAllPopups();
-        audioManager.PlayBGM();
 
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
