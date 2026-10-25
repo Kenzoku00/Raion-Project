@@ -478,9 +478,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5316e87650e751e44a4d93f48534ef31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  projectilePrefab: {fileID: 7347182641512365774, guid: 25204fed98f91a84d9b4aa79e55220e2, type: 3}
+  gunData: {fileID: 11400000, guid: 3b0979f09416d444b8278adad9d60eb1, type: 2}
+  projectilePrefab: {fileID: 72541180265752070, guid: 25204fed98f91a84d9b4aa79e55220e2, type: 3}
   firePoint: {fileID: 34470041198579103}
-  fireRate: 0.2
 --- !u!61 &6120933548092979450
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -19,21 +19,11 @@ public class Projectile : MonoBehaviour
 
     private void Move()
     {
-        /*
-            CLUE:
-            Gerakkan peluru maju ke depan/atas lokal menggunakan transform.Translate:
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
-        */
         transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
-            CLUE:
-            Ganti "false" dengan kondisi pengecekan tag musuh:
-            collision.CompareTag("Enemy")
-        */
         if (collision.CompareTag("Enemy"))
         {
             Health health = collision.GetComponent<Health>();
@@ -45,6 +35,11 @@ public class Projectile : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    public void SetDamage(int value)
+    {
+        damage = value;
     }
 
 }
