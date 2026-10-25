@@ -1700,6 +1700,7 @@ GameObject:
   - component: {fileID: 3455275962190095749}
   - component: {fileID: 8563519593245990536}
   - component: {fileID: 7322718432409334246}
+  - component: {fileID: 4257594002644758123}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1808,6 +1809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e0cec9b1d278489c146e129515ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
+  stoppingDistance: 0
 --- !u!114 &7322718432409334246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1821,3 +1823,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   data: {fileID: 11400000, guid: 45c991383ae1abd499c854a21ba82eac, type: 2}
+--- !u!114 &4257594002644758123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613787512034395671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ca5c3efbce66549be552cf4b7fdcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
+  attackType: 0
+  attackRange: 1
+  attackCooldown: 1
+  projectilePrefab: {fileID: -5178019893855501096, guid: 4f3a41e3d5c29f841a987bdbe704f1bf, type: 3}
+  firePoint: {fileID: 0}

@@ -4,3 +4,9 @@ public enum GameState
     Setting,
     Gameplay
 }
+
+public enum AttackType
+{
+    Melee,
+    Ranged
+}

@@ -5,10 +5,10 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private PlayerStatsData data;
 
-    public float MaxHealth { get; private set; }
-    public float CurrentHealth { get; private set; }
-    public float Attack { get; set; }
-    public float Speed { get; set; }
+    [field: SerializeField] public float MaxHealth { get; private set; }
+    [field: SerializeField] public float CurrentHealth { get; private set; }
+    [field: SerializeField] public float Attack { get; set; }
+    [field: SerializeField] public float Speed { get; set; }
 
     public bool IsDead => CurrentHealth <= 0f;
 
