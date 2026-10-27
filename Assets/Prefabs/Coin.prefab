@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2847125467770008225}
   - component: {fileID: 6262724618170847977}
   - component: {fileID: 6861898508161621546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Coin
   m_TagString: DropItem
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7977579525740174533}
   - component: {fileID: 5263066009442893325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8320032921480580969}
   - component: {fileID: 8675221954950146996}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8591562363873832048}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
