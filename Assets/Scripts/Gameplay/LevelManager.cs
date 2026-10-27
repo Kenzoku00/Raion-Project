@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
 
     private bool isPaused;
     private bool isGameOver;
+    private bool isSelectingBuff;
 
     private void Awake()
     {
@@ -61,7 +62,7 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (isGameOver) return;
+        if (isGameOver || isSelectingBuff) return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -72,7 +73,7 @@ public class LevelManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if (isGameOver || isPaused) return;
+        if (isGameOver || isPaused || isSelectingBuff) return;
 
         isPaused = true;
         GameManager.instance.SetGameState(GameState.Pause);
@@ -88,6 +89,18 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.SetGameState(GameState.Gameplay);
         Time.timeScale = 1f;
         SetPanel(pausePanel, false);
+    }
+
+    public void BeginBuffSelection()
+    {
+        isSelectingBuff = true;
+        Time.timeScale = 0f;
+    }
+
+    public void EndBuffSelection()
+    {
+        isSelectingBuff = false;
+        Time.timeScale = 1f;
     }
 
     public void RestartLevel()

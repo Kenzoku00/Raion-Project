@@ -8,6 +8,8 @@ public class Gun : MonoBehaviour
 
     public int Level { get; private set; } = 1;
 
+    public bool IsMaxLevel => Level >= gunData.MaxLevel;
+
     private GunLevel CurrentLevel => gunData.levels[Level - 1];
 
     private Camera cam;

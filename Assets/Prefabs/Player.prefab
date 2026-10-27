@@ -432,7 +432,7 @@ MonoBehaviour:
   pullSpeed: 8
   collectibleLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
 --- !u!1 &1120445264246006465
 GameObject:
   m_ObjectHideFlags: 0

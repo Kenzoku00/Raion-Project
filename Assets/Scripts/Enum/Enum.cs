@@ -12,3 +12,11 @@ public enum AttackType
     Melee,
     Ranged
 }
+
+public enum BuffType
+{
+    MaxHealth,
+    Attack,
+    Speed,
+    WeaponLevel
+}
