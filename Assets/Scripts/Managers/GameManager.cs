@@ -57,4 +57,10 @@ public class GameManager : MonoBehaviour
         gameState = newGameState;
         OnGameStateChanged?.Invoke(gameState);
     }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 }

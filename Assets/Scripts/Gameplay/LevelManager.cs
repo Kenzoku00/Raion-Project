@@ -1,16 +1,27 @@
-
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager instance;
+    public static LevelManager instance { get; private set; }
 
-    public int killCount = 0;
-    public TextMeshProUGUI killText;
+    [Header("References")]
+    [SerializeField] private PlayerStats player;
 
-    public int coinCount = 0;
-    public TextMeshProUGUI coinText;
+    [Header("HUD")]
+    [SerializeField] private TextMeshProUGUI killText;
+    [SerializeField] private TextMeshProUGUI coinText;
+
+    [Header("Panels")]
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject gameOverPanel;
+
+    public int KillCount { get; private set; }
+    public int CoinCount { get; private set; }
+
+    private bool isPaused;
+    private bool isGameOver;
 
     private void Awake()
     {
@@ -19,35 +30,104 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
+        SetPanel(pausePanel, false);
+        SetPanel(gameOverPanel, false);
+
+        if (player == null)
+            player = FindFirstObjectByType<PlayerStats>();
+
+        if (player != null)
+            player.OnDied += HandlePlayerDied;
+
+        if (GameManager.instance != null)
+            GameManager.instance.SetGameState(GameState.Gameplay);
+
         UpdateKillText();
-        UpdateCoinText();   
+        UpdateCoinText();
+    }
+
+    private void OnDestroy()
+    {
+        if (player != null)
+            player.OnDied -= HandlePlayerDied;
+
+        if (instance == this)
+        {
+            instance = null;
+            Time.timeScale = 1f;
+        }
+    }
+
+    private void Update()
+    {
+        if (isGameOver) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused) ResumeGame();
+            else PauseGame();
+        }
+    }
+
+    public void PauseGame()
+    {
+        if (isGameOver || isPaused) return;
+
+        isPaused = true;
+        GameManager.instance.SetGameState(GameState.Pause);
+        Time.timeScale = 0f;
+        SetPanel(pausePanel, true);
+    }
+
+    public void ResumeGame()
+    {
+        if (!isPaused) return;
+
+        isPaused = false;
+        GameManager.instance.SetGameState(GameState.Gameplay);
+        Time.timeScale = 1f;
+        SetPanel(pausePanel, false);
+    }
+
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f;
+        GameManager.instance.SceneLoader.RestartScene();
+    }
+
+    private void HandlePlayerDied()
+    {
+        isGameOver = true;
+        GameManager.instance.SetGameState(GameState.GameOver);
+        Time.timeScale = 0f;
+        SetPanel(gameOverPanel, true);
     }
 
     public void AddKill()
     {
-        killCount++;
+        KillCount++;
         UpdateKillText();
     }
 
     public void AddCoin(int amount)
     {
-        coinCount += amount;
+        CoinCount += amount;
         UpdateCoinText();
     }
 
     private void UpdateKillText()
     {
-        if (killText != null)
-        {
-            killText.text = "Kills: " + killCount;
-        }
+        if (killText != null) killText.text = "Kills: " + KillCount;
     }
 
     private void UpdateCoinText()
     {
-        if (coinText != null)
-        {
-            coinText.text = "Coins: " + coinCount;
-        }
+        if (coinText != null) coinText.text = "Coins: " + CoinCount;
+    }
+
+    private void SetPanel(GameObject panel, bool active)
+    {
+        if (panel != null) panel.SetActive(active);
     }
 }

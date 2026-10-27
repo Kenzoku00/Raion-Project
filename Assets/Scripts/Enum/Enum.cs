@@ -2,7 +2,9 @@ public enum GameState
 {
     MainMenu,
     Setting,
-    Gameplay
+    Gameplay,
+    Pause,
+    GameOver
 }
 
 public enum AttackType
