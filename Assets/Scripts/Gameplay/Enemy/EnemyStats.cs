@@ -12,6 +12,8 @@ public class EnemyStats : MonoBehaviour
 
     public bool IsDead => CurrentHealth <= 0f;
 
+    public int ExpReward => data.expReward;
+
     public event Action OnDied;
 
     private void Awake()
@@ -36,7 +38,7 @@ public class EnemyStats : MonoBehaviour
         OnDied?.Invoke();
 
         if (LevelManager.instance != null)
-            LevelManager.instance.AddKill(data.expReward);
+            LevelManager.instance.AddKill();
 
         Destroy(gameObject);
     }

@@ -1701,6 +1701,7 @@ GameObject:
   - component: {fileID: 8563519593245990536}
   - component: {fileID: 7322718432409334246}
   - component: {fileID: 4257594002644758123}
+  - component: {fileID: 4995628721695009429}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1840,3 +1841,21 @@ MonoBehaviour:
   attackCooldown: 1
   projectilePrefab: {fileID: -5178019893855501096, guid: 4f3a41e3d5c29f841a987bdbe704f1bf, type: 3}
   firePoint: {fileID: 0}
+--- !u!114 &4995628721695009429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613787512034395671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c51de59f2cb244e8cdfd5ac32aaa60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDrop
+  expOrbPrefab: {fileID: 8437204296730831345, guid: c2c260d18caaa484c812f409aa82facc, type: 3}
+  coinPrefab: {fileID: 6861898508161621546, guid: e08fe358dae6cb44386ea67e24e1eb41, type: 3}
+  coinDropChance: 30
+  minCoin: 1
+  maxCoin: 3
+  scatterRadius: 1.2

@@ -117,13 +117,10 @@ public class LevelManager : MonoBehaviour
         SetPanel(gameOverPanel, true);
     }
 
-    public void AddKill(int expReward)
+    public void AddKill()
     {
         KillCount++;
         UpdateKillText();
-
-        if (player != null)
-            player.AddExp(expReward);
     }
 
     public void AddCoin(int amount)

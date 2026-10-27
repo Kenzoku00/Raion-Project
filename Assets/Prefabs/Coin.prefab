@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2847125467770008225}
   - component: {fileID: 6262724618170847977}
   - component: {fileID: 6861898508161621546}
+  - component: {fileID: 4433233876681150806}
   m_Layer: 6
   m_Name: Coin
   m_TagString: DropItem
@@ -83,6 +84,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   coinValue: 1
+--- !u!114 &4433233876681150806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2763300499431770088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766a4fe25d028b74d87883ca84f6ef7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropPop
+  duration: 0.4
+  jumpHeight: 1
+  scaleEase: 27
 --- !u!1 &5375193493109148288
 GameObject:
   m_ObjectHideFlags: 0
