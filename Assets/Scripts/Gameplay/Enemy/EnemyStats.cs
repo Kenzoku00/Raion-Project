@@ -36,7 +36,7 @@ public class EnemyStats : MonoBehaviour
         OnDied?.Invoke();
 
         if (LevelManager.instance != null)
-            LevelManager.instance.AddKill();
+            LevelManager.instance.AddKill(data.expReward);
 
         Destroy(gameObject);
     }
