@@ -353,8 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98d07edeabedbc4eaa9d193e4bf3536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
-  speed: 6
-  lifeTime: 4
+  speed: 7.5
+  lifeTime: 3
 --- !u!70 &7797196839169072480
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

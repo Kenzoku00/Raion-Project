@@ -13,33 +13,33 @@ MonoBehaviour:
   m_Name: GunData
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   levels:
+  - fireRate: 0.8
+    bulletsPerShot: 1
+    spreadAngle: 0
+  - fireRate: 0.7
+    bulletsPerShot: 1
+    spreadAngle: 0
+  - fireRate: 0.7
+    bulletsPerShot: 2
+    spreadAngle: 10
+  - fireRate: 0.6
+    bulletsPerShot: 2
+    spreadAngle: 10
+  - fireRate: 0.6
+    bulletsPerShot: 3
+    spreadAngle: 20
+  - fireRate: 0.5
+    bulletsPerShot: 3
+    spreadAngle: 20
+  - fireRate: 0.5
+    bulletsPerShot: 4
+    spreadAngle: 30
   - fireRate: 0.4
-    bulletsPerShot: 1
-    spreadAngle: 0
-  - fireRate: 0.35
-    bulletsPerShot: 1
-    spreadAngle: 0
-  - fireRate: 0.35
-    bulletsPerShot: 2
-    spreadAngle: 10
-  - fireRate: 0.3
-    bulletsPerShot: 2
-    spreadAngle: 10
-  - fireRate: 0.3
-    bulletsPerShot: 3
-    spreadAngle: 20
-  - fireRate: 0.25
-    bulletsPerShot: 3
-    spreadAngle: 20
-  - fireRate: 0.25
     bulletsPerShot: 4
     spreadAngle: 30
-  - fireRate: 0.2
-    bulletsPerShot: 4
-    spreadAngle: 30
-  - fireRate: 0.2
+  - fireRate: 0.4
     bulletsPerShot: 5
     spreadAngle: 40
-  - fireRate: 0.15
+  - fireRate: 0.3
     bulletsPerShot: 5
     spreadAngle: 45

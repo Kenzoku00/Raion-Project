@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsData
   maxHealth: 100
   attack: 10
-  speed: 5
+  speed: 2.5
+  baseExpRequired: 10
+  expGrowth: 1.2
