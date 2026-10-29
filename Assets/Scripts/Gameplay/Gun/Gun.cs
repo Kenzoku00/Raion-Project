@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -15,6 +16,8 @@ public class Gun : MonoBehaviour
     private Camera cam;
     private PlayerStats stats;
     private float nextFireTime;
+
+    public event Action<int> OnLevelChanged;
 
     private void Awake()
     {
@@ -37,6 +40,7 @@ public class Gun : MonoBehaviour
         if (Level >= gunData.MaxLevel) return false;
 
         Level++;
+        OnLevelChanged?.Invoke(Level);
         return true;
     }
 

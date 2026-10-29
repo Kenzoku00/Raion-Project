@@ -8,8 +8,8 @@ public class PlayerStats : MonoBehaviour
     [field: Header("Player Stats")]
     [field: SerializeField] public float MaxHealth { get; private set; }
     [field: SerializeField] public float CurrentHealth { get; private set; }
-    [field: SerializeField] public float Attack { get; set; }
-    [field: SerializeField] public float Speed { get; set; }
+    [field: SerializeField] public float Attack { get; private set; }
+    [field: SerializeField] public float Speed { get; private set; }
 
     [field: Header("Exp Stats")]
     [field: SerializeField] public int Level { get; private set; }
@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     public bool IsDead => CurrentHealth <= 0f;
 
     public event Action<float, float> OnHealthChanged;
+    public event Action OnStatsChanged;
     public event Action OnDied;
     public event Action<int, int> OnExpChanged;
     public event Action<int> OnLevelUp;
@@ -68,6 +69,18 @@ public class PlayerStats : MonoBehaviour
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
     }
 
+    public void AddAttack(float amount)
+    {
+        Attack += amount;
+        OnStatsChanged?.Invoke();
+    }
+
+    public void AddSpeed(float amount)
+    {
+        Speed += amount;
+        OnStatsChanged?.Invoke();
+    }
+
     public void AddExp(int amount)
     {
         if (IsDead || amount <= 0) return;
@@ -95,6 +108,7 @@ public class PlayerStats : MonoBehaviour
     {
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
         OnExpChanged?.Invoke(CurrentExp, ExpToNextLevel);
+        OnStatsChanged?.Invoke();
     }
 
     private void OnValidate()
