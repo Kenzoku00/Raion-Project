@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour , IDamageable
 {
     [SerializeField] private PlayerStatsData data;
 
@@ -20,6 +20,7 @@ public class PlayerStats : MonoBehaviour
 
     public event Action<float, float> OnHealthChanged;
     public event Action OnStatsChanged;
+    public event Action<float> OnDamaged;
     public event Action OnDied;
     public event Action<int, int> OnExpChanged;
     public event Action<int> OnLevelUp;
@@ -49,6 +50,7 @@ public class PlayerStats : MonoBehaviour
         if (IsDead) return;
 
         CurrentHealth = Mathf.Max(CurrentHealth - amount, 0f);
+        OnDamaged?.Invoke(amount);
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
 
         if (IsDead) OnDied?.Invoke();

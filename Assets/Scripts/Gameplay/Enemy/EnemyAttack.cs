@@ -30,7 +30,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
-        if (player == null || player.IsDead) return;
+        if (stats.IsDead || player == null || player.IsDead) return;
         if (Time.time < nextAttackTime) return;
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
