@@ -91,6 +91,15 @@ public class LevelManager : MonoBehaviour
         SetPanel(pausePanel, false);
     }
 
+    public void BackToMenu()
+    {
+        isPaused = false;
+        GameManager.instance.SetGameState(GameState.MainMenu);
+        Time.timeScale = 1f;
+        SetPanel(pausePanel, false);
+        GameManager.instance.SceneLoader.LoadMainMenu();
+    }
+
     public void BeginBuffSelection()
     {
         isSelectingBuff = true;
