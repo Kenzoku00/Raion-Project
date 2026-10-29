@@ -21,6 +21,7 @@ public class PlayerStats : MonoBehaviour , IDamageable
     public event Action<float, float> OnHealthChanged;
     public event Action OnStatsChanged;
     public event Action<float> OnDamaged;
+    public event Action<float> OnHealed;
     public event Action OnDied;
     public event Action<int, int> OnExpChanged;
     public event Action<int> OnLevelUp;
@@ -60,9 +61,18 @@ public class PlayerStats : MonoBehaviour , IDamageable
     {
         if (IsDead) return;
 
+        float previous = CurrentHealth;
         CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+
+        float healed = CurrentHealth - previous;
+        if (healed <= 0f) return;
+
+        OnHealed?.Invoke(healed);
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
     }
+
+    [ContextMenu("Heal 10")]
+    private void DebugHeal() => Heal(10f);
 
     public void AddMaxHealth(float amount)
     {
