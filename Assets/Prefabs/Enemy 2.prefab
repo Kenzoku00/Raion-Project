@@ -1009,6 +1009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4481567424590675832}
   - component: {fileID: 5302832722634558359}
+  - component: {fileID: 2598452677701773094}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1050,6 +1051,22 @@ MonoBehaviour:
   rampTime: 0.12
   randomizeStart: 1
   moveThreshold: 0.1
+--- !u!114 &2598452677701773094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2799328665869236065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ce66ce3d9f26443badfce341f8d1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterFeedback
+  flashDuration: 0.08
+  punchAmount: 0.25
+  punchDuration: 0.2
+  deathDuration: 0.35
 --- !u!1 &2895210196655915831
 GameObject:
   m_ObjectHideFlags: 0
