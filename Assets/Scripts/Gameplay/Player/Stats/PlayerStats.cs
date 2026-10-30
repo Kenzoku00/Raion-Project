@@ -70,9 +70,6 @@ public class PlayerStats : MonoBehaviour , IDamageable
 
         if (IsDead) OnDied?.Invoke();
 
-        if (amount > 0)
-        GameManager.GenerateFloatingText(Mathf.FloorToInt(amount).ToString(), transform);
-
         if (flashRoutine != null) StopCoroutine(flashRoutine);
         flashRoutine = StartCoroutine(DamageFlash());
     }

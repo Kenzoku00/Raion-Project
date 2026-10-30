@@ -71,9 +71,6 @@ public class EnemyStats : MonoBehaviour, IDamageable
         CurrentHealth = Mathf.Max(CurrentHealth - amount, 0f);
         OnDamaged?.Invoke(amount);
 
-        if (amount > 0)
-            GameManager.GenerateFloatingText(Mathf.FloorToInt(amount).ToString(), transform);
-
         if (IsDead)
         {
             Die();

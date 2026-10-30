@@ -1893,10 +1893,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   data: {fileID: 11400000, guid: 45c991383ae1abd499c854a21ba82eac, type: 2}
+  destroyDelay: 0.35
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   damageFlashDuration: 0.2
   deathFadeTime: 0.6
-  destroyDelay: 0.35
+  despawnDistance: 20
 --- !u!114 &4257594002644758123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1946,5 +1947,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthPopupSpawner
   offset: {x: 0, y: 0.4}
   randomX: 0.15
-  damageColor: {r: 1, g: 1, b: 1, a: 1}
+  damageColor: {r: 1, g: 0.902462, b: 0, a: 1}
   healColor: {r: 0.3, g: 1, b: 0.4, a: 1}

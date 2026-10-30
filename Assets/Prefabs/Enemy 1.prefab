@@ -680,7 +680,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoveWobble
   tiltAngle: 8
   hopHeight: 0.1
-  stepDuration: 0.15
+  cyclesPerSecond: 3
+  rampTime: 0.12
   randomizeStart: 1
   moveThreshold: 0.1
 --- !u!1 &2895210196655915831
@@ -2612,6 +2613,7 @@ GameObject:
   - component: {fileID: 7322718432409334246}
   - component: {fileID: 4257594002644758123}
   - component: {fileID: 4995628721695009429}
+  - component: {fileID: -3487116942503830656}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -2735,9 +2737,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   data: {fileID: 11400000, guid: b6eba24b78347264298dd96f825a172c, type: 2}
+  destroyDelay: 0.35
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   damageFlashDuration: 0.2
   deathFadeTime: 0.6
+  despawnDistance: 20
 --- !u!114 &4257594002644758123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2769,10 +2773,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrop
   expOrbPrefab: {fileID: 8437204296730831345, guid: c2c260d18caaa484c812f409aa82facc, type: 3}
   coinPrefab: {fileID: 6861898508161621546, guid: e08fe358dae6cb44386ea67e24e1eb41, type: 3}
-  coinDropChance: 30
+  coinDropChance: 25
   minCoin: 1
-  maxCoin: 3
+  maxCoin: 4
   scatterRadius: 1.2
+--- !u!114 &-3487116942503830656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613787512034395671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80b5f1e2a7b5c048bbc15fb01912322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthPopupSpawner
+  offset: {x: 0, y: 0.4}
+  randomX: 0.15
+  damageColor: {r: 1, g: 0.90588236, b: 0, a: 1}
+  healColor: {r: 0.3, g: 1, b: 0.4, a: 1}
 --- !u!1 &8983602088475347056
 GameObject:
   m_ObjectHideFlags: 0
