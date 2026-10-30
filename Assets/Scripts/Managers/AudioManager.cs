@@ -4,7 +4,7 @@ using System;
 using AYellowpaper.SerializedCollections;
 
 [Serializable]
-public class AudioManager : MonoBehaviour
+public class AudioManager
 {
     [Header("Audio Mixer")]
     public AudioMixer audioMixer;
@@ -18,6 +18,9 @@ public class AudioManager : MonoBehaviour
     [Header("SFX Settings")]
     public AudioSource sfxSource;
     public string sfxMixerParam = "SFX_VOLUME";
+
+    [SerializedDictionary("BGM Name", "Audio Clip")]
+    public SerializedDictionary<string, AudioClip> bgmList = new SerializedDictionary<string, AudioClip>();
 
     [SerializedDictionary("SFX Name", "Audio Clip")]
     public SerializedDictionary<string, AudioClip> sfxList = new SerializedDictionary<string, AudioClip>();
@@ -37,11 +40,36 @@ public class AudioManager : MonoBehaviour
         PlayBGM();
     }
 
+    public void PlayBGM(string bgmName)
+    {
+        if (bgmList.TryGetValue(bgmName, out AudioClip clip))
+        {
+            PlayBGMClip(clip);
+        }
+        else
+        {
+            Debug.LogWarning($"BGM '{bgmName}' tidak ditemukan.");
+            PlayBGM();
+        }
+    }
+
     public void PlayBGM()
     {
-        if (!defaultBGM) return;
+        if (defaultBGM != null)
+        {
+            PlayBGMClip(defaultBGM);
+        }
+        else
+        {
+            Debug.LogWarning("Default BGM belum dipasang.");
+        }
+    }
 
-        bgmSource.clip = defaultBGM;
+    private void PlayBGMClip(AudioClip clip)
+    {
+        if (bgmSource.clip == clip && bgmSource.isPlaying) return;
+
+        bgmSource.clip = clip;
         bgmSource.loop = true;
         bgmSource.Play();
     }

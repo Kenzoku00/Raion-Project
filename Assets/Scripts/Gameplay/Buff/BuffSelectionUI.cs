@@ -134,6 +134,7 @@ public class BuffSelectionUI : MonoBehaviour
     {
         selectedIndex = index;
 
+        GameManager.instance.audioManager.PlaySFX("BUTTON");
         buffManager.SelectBuff(index);
     }
 

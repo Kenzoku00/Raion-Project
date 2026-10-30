@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlayButtonPressed()
     {
+        GameManager.instance.audioManager.PlaySFX("BUTTON");
+
         if (cameraFloatingTween != null)
             cameraFloatingTween.Kill();
 

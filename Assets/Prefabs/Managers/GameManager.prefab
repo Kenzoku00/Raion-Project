@@ -229,12 +229,36 @@ MonoBehaviour:
     audioMixer: {fileID: 24100000, guid: 247018cbf1ce77b448c96523156381e7, type: 2}
     audioMixerGroup: {fileID: 24300002, guid: 247018cbf1ce77b448c96523156381e7, type: 2}
     bgmSource: {fileID: 5625177686730739537}
-    defaultBGM: {fileID: 0}
+    defaultBGM: {fileID: 8300000, guid: 1f7d66ecb5f88bd41a16646d5fc121aa, type: 3}
     bgmMixerParam: BGM_VOLUME
     sfxSource: {fileID: 7514042643233227718}
     sfxMixerParam: SFX_VOLUME
+    bgmList:
+      _serializedList:
+      - Key: MENU_BGM
+        Value: {fileID: 8300000, guid: 1f7d66ecb5f88bd41a16646d5fc121aa, type: 3}
+      - Key: GAMEPLAY_BGM
+        Value: {fileID: 8300000, guid: c01705377fa2a7849a8a05640ff326d2, type: 3}
     sfxList:
-      _serializedList: []
+      _serializedList:
+      - Key: SHOOT
+        Value: {fileID: 8300000, guid: f837a16afa2aa1248ac7bd17da5a5126, type: 3}
+      - Key: HEALING
+        Value: {fileID: 8300000, guid: b36df3ae292d502448647f38199a2866, type: 3}
+      - Key: DEATH_PLAYER
+        Value: {fileID: 8300000, guid: f03788ea3bf0141459bf62c5e3b9fcb9, type: 3}
+      - Key: DEATH_ENEMY
+        Value: {fileID: 8300000, guid: c8cf361c1f541a64e9d470fdcaae1808, type: 3}
+      - Key: PLAYER
+        Value: {fileID: 8300000, guid: 5a6ceb3bf5dc2834cba595095e49a3f9, type: 3}
+      - Key: ENEMY
+        Value: {fileID: 8300000, guid: 74aecfe9f1689d0489a5f8e2783b5738, type: 3}
+      - Key: XP
+        Value: {fileID: 8300000, guid: 76b031a89046bc24594f249922d56a70, type: 3}
+      - Key: COIN
+        Value: {fileID: 8300000, guid: 67e5ec5a11da4b24488963dd8466f882, type: 3}
+      - Key: BUTTON
+        Value: {fileID: 8300000, guid: 500379ceae1e41d44910bf778654fff1, type: 3}
     savedVolume: 0
     savedBgmVolume: 0
     savedSfxVolume: 0
@@ -244,6 +268,10 @@ MonoBehaviour:
       _serializedList: []
   sceneLoader: {fileID: 5267849036566919415}
   gameState: 0
+  damageTextCanvas: {fileID: 0}
+  textFontSize: 20
+  textFont: {fileID: 11400000, guid: 6ec548233646ac54ea57b355e98a9ecf, type: 2}
+  referenceCamera: {fileID: 0}
 --- !u!114 &5267849036566919415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +297,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -366,7 +394,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0

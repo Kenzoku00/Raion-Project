@@ -47,6 +47,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadMainMenu()
     {
         gameManager.gameState = GameState.MainMenu;
+        gameManager.audioManager.PlayBGM("MENU_BGM");
         LoadScene("MainMenu");
     }
 

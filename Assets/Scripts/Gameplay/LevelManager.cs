@@ -46,6 +46,8 @@ public class LevelManager : MonoBehaviour
     {
         instance = this;
         HighScore = PlayerPrefs.GetInt(HighScoreKey, 0);
+
+        GameManager.instance.audioManager.PlayBGM("GAMEPLAY_BGM");
     }
 
     private void Start()
