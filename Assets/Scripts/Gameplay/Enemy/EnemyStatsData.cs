@@ -7,4 +7,5 @@ public class EnemyStatsData : ScriptableObject
     public float attack = 5f;
     public float speed = 3f;
     public int expReward = 5;
+    public int scoreReward = 10;
 }

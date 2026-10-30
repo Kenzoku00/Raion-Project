@@ -86,7 +86,10 @@ public class EnemyStats : MonoBehaviour, IDamageable
         OnDied?.Invoke();
 
         if (LevelManager.instance != null)
+        {
             LevelManager.instance.AddKill();
+            LevelManager.instance.AddScore(data.scoreReward);
+        }
 
         if (flashRoutine != null) StopCoroutine(flashRoutine);
 

@@ -16,3 +16,4 @@ MonoBehaviour:
   attack: 25
   speed: 1
   expReward: 20
+  scoreReward: 30

@@ -4,6 +4,8 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
+    private const string HighScoreKey = "HighScore";
+
     public static LevelManager instance { get; private set; }
 
     [Header("References")]
@@ -11,15 +13,30 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private IntroAnimation introAnimation;
 
     [Header("HUD")]
+    [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI killText;
     [SerializeField] private TextMeshProUGUI coinText;
+
+    [Header("HUD Labels")]
+    [SerializeField] private string scoreLabel = "Score : ";
+    [SerializeField] private string killLabel = "Kill : ";
+    [SerializeField] private string coinLabel = "Coin : ";
 
     [Header("Panels")]
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject gameOverPanel;
 
+    [Header("Game Over UI (angka saja)")]
+    [SerializeField] private TextMeshProUGUI gameOverScoreText;
+    [SerializeField] private TextMeshProUGUI gameOverHighScoreText;
+    [SerializeField] private TextMeshProUGUI gameOverKillText;
+    [SerializeField] private TextMeshProUGUI gameOverCoinText;
+    [SerializeField] private GameObject newBestObject;
+
     public int KillCount { get; private set; }
     public int CoinCount { get; private set; }
+    public int ScoreCount { get; private set; }
+    public int HighScore { get; private set; }
 
     private bool isPaused;
     private bool isGameOver;
@@ -28,6 +45,7 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        HighScore = PlayerPrefs.GetInt(HighScoreKey, 0);
     }
 
     private void Start()
@@ -45,6 +63,7 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance != null)
             GameManager.instance.SetGameState(GameState.Gameplay);
 
+        UpdateScoreText();
         UpdateKillText();
         UpdateCoinText();
 
@@ -129,7 +148,26 @@ public class LevelManager : MonoBehaviour
         isGameOver = true;
         GameManager.instance.SetGameState(GameState.GameOver);
         Time.timeScale = 0f;
+
+        bool isNewBest = SaveHighScore();
+
+        SetText(gameOverScoreText, ScoreCount.ToString());
+        SetText(gameOverHighScoreText, HighScore.ToString());
+        SetText(gameOverKillText, KillCount.ToString());
+        SetText(gameOverCoinText, CoinCount.ToString());
+        SetPanel(newBestObject, isNewBest);
+
         SetPanel(gameOverPanel, true);
+    }
+
+    private bool SaveHighScore()
+    {
+        if (ScoreCount <= HighScore) return false;
+
+        HighScore = ScoreCount;
+        PlayerPrefs.SetInt(HighScoreKey, HighScore);
+        PlayerPrefs.Save();
+        return true;
     }
 
     public void AddKill()
@@ -144,18 +182,32 @@ public class LevelManager : MonoBehaviour
         UpdateCoinText();
     }
 
-    private void UpdateKillText()
+    public void AddScore(int amount)
     {
-        if (killText != null) killText.text = "Kills: " + KillCount;
+        if (isGameOver || amount <= 0) return;
+
+        ScoreCount += amount;
+        UpdateScoreText();
     }
 
-    private void UpdateCoinText()
+    private void UpdateScoreText() => SetText(scoreText, scoreLabel + ScoreCount);
+    private void UpdateKillText() => SetText(killText, killLabel + KillCount);
+    private void UpdateCoinText() => SetText(coinText, coinLabel + CoinCount);
+
+    private void SetText(TextMeshProUGUI text, string value)
     {
-        if (coinText != null) coinText.text = "Coins: " + CoinCount;
+        if (text != null) text.text = value;
     }
 
     private void SetPanel(GameObject panel, bool active)
     {
         if (panel != null) panel.SetActive(active);
+    }
+
+    [ContextMenu("Reset High Score")]
+    private void DebugResetHighScore()
+    {
+        PlayerPrefs.DeleteKey(HighScoreKey);
+        HighScore = 0;
     }
 }
