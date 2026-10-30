@@ -36,9 +36,11 @@ public class PlayerStats : MonoBehaviour , IDamageable
     private Coroutine flashRoutine;
 
     private bool isInitialized;
+    AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         InitializeStats();
         isInitialized = true;
 
@@ -62,13 +64,18 @@ public class PlayerStats : MonoBehaviour , IDamageable
 
     public void TakeDamage(float amount)
     {
+        audioManager.PlaySFX("PLAYER");
         if (IsDead) return;
 
         CurrentHealth = Mathf.Max(CurrentHealth - amount, 0f);
         OnDamaged?.Invoke(amount);
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
 
-        if (IsDead) OnDied?.Invoke();
+        if (IsDead)
+        {
+            OnDied?.Invoke();
+            audioManager.PlaySFX("DEATH_PLAYER");
+        }
 
         if (flashRoutine != null) StopCoroutine(flashRoutine);
         flashRoutine = StartCoroutine(DamageFlash());

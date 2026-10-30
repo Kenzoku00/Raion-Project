@@ -33,9 +33,11 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     public float despawnDistance = 20f;
     Transform player;
+    AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         MaxHealth = data.maxHealth;
         CurrentHealth = MaxHealth;
         Attack = data.attack;
@@ -66,6 +68,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amount)
     {
+        audioManager.PlaySFX("ENEMY");
         if (IsDead) return;
 
         CurrentHealth = Mathf.Max(CurrentHealth - amount, 0f);

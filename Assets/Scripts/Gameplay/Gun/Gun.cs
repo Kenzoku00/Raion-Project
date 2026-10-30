@@ -6,6 +6,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private GunData gunData;
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private Transform firePoint;
+    AudioManager audioManager;
 
     public int Level { get; private set; } = 1;
 
@@ -23,6 +24,7 @@ public class Gun : MonoBehaviour
     {
         cam = Camera.main;
         stats = GetComponentInParent<PlayerStats>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -58,6 +60,8 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
+        audioManager.PlaySFX("SHOOT");
+
         GunLevel level = CurrentLevel;
 
         Vector2 direction = GetMouseWorldPosition() - firePoint.position;

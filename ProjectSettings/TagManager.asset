@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - DropItem
   - Gun
+  - Audio
   layers:
   - Default
   - TransparentFX

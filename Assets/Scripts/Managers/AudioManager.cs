@@ -4,7 +4,7 @@ using System;
 using AYellowpaper.SerializedCollections;
 
 [Serializable]
-public class AudioManager
+public class AudioManager : MonoBehaviour
 {
     [Header("Audio Mixer")]
     public AudioMixer audioMixer;
