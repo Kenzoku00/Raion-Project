@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private PlayerStats player;
+    [SerializeField] private IntroAnimation introAnimation;
 
     [Header("HUD")]
     [SerializeField] private TextMeshProUGUI killText;
@@ -46,6 +47,11 @@ public class LevelManager : MonoBehaviour
 
         UpdateKillText();
         UpdateCoinText();
+
+        if (introAnimation != null)
+        {
+            introAnimation.PlayIntroAnimation();
+        }
     }
 
     private void OnDestroy()
