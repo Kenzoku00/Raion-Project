@@ -1874,6 +1874,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   data: {fileID: 11400000, guid: 45c991383ae1abd499c854a21ba82eac, type: 2}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  damageFlashDuration: 0.2
+  deathFadeTime: 0.6
 --- !u!114 &4257594002644758123
 MonoBehaviour:
   m_ObjectHideFlags: 0

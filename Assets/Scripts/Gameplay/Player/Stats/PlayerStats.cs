@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -23,12 +24,25 @@ public class PlayerStats : MonoBehaviour
     public event Action<int, int> OnExpChanged;
     public event Action<int> OnLevelUp;
 
+    [Header("Damage Feedback")]
+    public Color damageColor = Color.white;
+    public float damageFlashDuration = 0.2f;
+
+    private SpriteRenderer[] renderers;
+    private Color[] originalColors;
+    private Coroutine flashRoutine;
+
     private bool isInitialized;
 
     private void Awake()
     {
         InitializeStats();
         isInitialized = true;
+
+        renderers = GetComponentsInChildren<SpriteRenderer>();
+        originalColors = new Color[renderers.Length];
+        for (int i = 0; i < renderers.Length; i++)
+            originalColors[i] = renderers[i].color;
     }
 
     private void InitializeStats()
@@ -51,6 +65,25 @@ public class PlayerStats : MonoBehaviour
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
 
         if (IsDead) OnDied?.Invoke();
+
+        if (amount > 0)
+        GameManager.GenerateFloatingText(Mathf.FloorToInt(amount).ToString(), transform);
+
+        if (flashRoutine != null) StopCoroutine(flashRoutine);
+        flashRoutine = StartCoroutine(DamageFlash());
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        for (int i = 0; i < renderers.Length; i++)
+            if (renderers[i] != null) renderers[i].color = damageColor;
+
+        yield return new WaitForSeconds(damageFlashDuration);
+
+        for (int i = 0; i < renderers.Length; i++)
+            if (renderers[i] != null) renderers[i].color = originalColors[i];
+
+        flashRoutine = null;
     }
 
     public void Heal(float amount)
