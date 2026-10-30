@@ -2,15 +2,15 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour , IDamageable
 {
     [SerializeField] private PlayerStatsData data;
 
     [field: Header("Player Stats")]
     [field: SerializeField] public float MaxHealth { get; private set; }
     [field: SerializeField] public float CurrentHealth { get; private set; }
-    [field: SerializeField] public float Attack { get; set; }
-    [field: SerializeField] public float Speed { get; set; }
+    [field: SerializeField] public float Attack { get; private set; }
+    [field: SerializeField] public float Speed { get; private set; }
 
     [field: Header("Exp Stats")]
     [field: SerializeField] public int Level { get; private set; }
@@ -20,6 +20,9 @@ public class PlayerStats : MonoBehaviour
     public bool IsDead => CurrentHealth <= 0f;
 
     public event Action<float, float> OnHealthChanged;
+    public event Action OnStatsChanged;
+    public event Action<float> OnDamaged;
+    public event Action<float> OnHealed;
     public event Action OnDied;
     public event Action<int, int> OnExpChanged;
     public event Action<int> OnLevelUp;
@@ -62,6 +65,7 @@ public class PlayerStats : MonoBehaviour
         if (IsDead) return;
 
         CurrentHealth = Mathf.Max(CurrentHealth - amount, 0f);
+        OnDamaged?.Invoke(amount);
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
 
         if (IsDead) OnDied?.Invoke();
@@ -90,15 +94,36 @@ public class PlayerStats : MonoBehaviour
     {
         if (IsDead) return;
 
+        float previous = CurrentHealth;
         CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+
+        float healed = CurrentHealth - previous;
+        if (healed <= 0f) return;
+
+        OnHealed?.Invoke(healed);
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
     }
+
+    [ContextMenu("Heal 10")]
+    private void DebugHeal() => Heal(10f);
 
     public void AddMaxHealth(float amount)
     {
         MaxHealth += amount;
         CurrentHealth += amount;
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
+    }
+
+    public void AddAttack(float amount)
+    {
+        Attack += amount;
+        OnStatsChanged?.Invoke();
+    }
+
+    public void AddSpeed(float amount)
+    {
+        Speed += amount;
+        OnStatsChanged?.Invoke();
     }
 
     public void AddExp(int amount)
@@ -128,6 +153,7 @@ public class PlayerStats : MonoBehaviour
     {
         OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
         OnExpChanged?.Invoke(CurrentExp, ExpToNextLevel);
+        OnStatsChanged?.Invoke();
     }
 
     private void OnValidate()

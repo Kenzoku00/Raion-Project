@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private PlayerStats player;
+    [SerializeField] private IntroAnimation introAnimation;
 
     [Header("HUD")]
     [SerializeField] private TextMeshProUGUI killText;
@@ -46,6 +47,11 @@ public class LevelManager : MonoBehaviour
 
         UpdateKillText();
         UpdateCoinText();
+
+        if (introAnimation != null)
+        {
+            introAnimation.PlayIntroAnimation();
+        }
     }
 
     private void OnDestroy()
@@ -89,6 +95,15 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.SetGameState(GameState.Gameplay);
         Time.timeScale = 1f;
         SetPanel(pausePanel, false);
+    }
+
+    public void BackToMenu()
+    {
+        isPaused = false;
+        GameManager.instance.SetGameState(GameState.MainMenu);
+        Time.timeScale = 1f;
+        SetPanel(pausePanel, false);
+        GameManager.instance.SceneLoader.LoadMainMenu();
     }
 
     public void BeginBuffSelection()

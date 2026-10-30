@@ -15,5 +15,6 @@ MonoBehaviour:
   type: 0
   title: HP Buff
   description: Max HP +20
+  icon: {fileID: 21300000, guid: 3a907b7625ce6934c9dc4eb7e925094b, type: 3}
   value: 20
   weight: 1

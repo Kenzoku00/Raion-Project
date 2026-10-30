@@ -102,10 +102,10 @@ public class BuffManager : MonoBehaviour
                 player.AddMaxHealth(buff.value);
                 break;
             case BuffType.Attack:
-                player.Attack += buff.value;
+                player.AddAttack(buff.value);
                 break;
             case BuffType.Speed:
-                player.Speed += buff.value;
+                player.AddSpeed(buff.value);
                 break;
             case BuffType.WeaponLevel:
                 gun.LevelUp();

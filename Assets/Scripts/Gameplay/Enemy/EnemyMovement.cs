@@ -30,6 +30,12 @@ public class EnemyMovement : MonoBehaviour
     {
         if (player == null) return;
 
+        if (stats.IsDead)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         Vector2 toPlayer = player.position - transform.position;
 
         if (toPlayer.magnitude <= stoppingDistance)

@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 428808776589626225}
   - component: {fileID: 5520167494395553419}
   - component: {fileID: -3690090454653833662}
+  - component: {fileID: 3295358185490185051}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -430,9 +431,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoinMagnet
   magnetRadius: 3
   pullSpeed: 8
-  collectibleLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  itemTag: DropItem
+--- !u!114 &3295358185490185051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103631598301865765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80b5f1e2a7b5c048bbc15fb01912322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthPopupSpawner
+  offset: {x: 0, y: 0.4}
+  randomX: 0.15
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  healColor: {r: 0.3, g: 1, b: 0.4, a: 1}
 --- !u!1 &1120445264246006465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,6 +1415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 536344472144281010}
   - component: {fileID: 1497025437064643041}
+  - component: {fileID: 5751021578110858161}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1437,9 +1453,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoveWobble
   tiltAngle: 8
   hopHeight: 0.1
-  stepDuration: 0.15
+  cyclesPerSecond: 3
+  rampTime: 0.12
   randomizeStart: 0
   moveThreshold: 0.1
+--- !u!114 &5751021578110858161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022872223062516915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ce66ce3d9f26443badfce341f8d1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterFeedback
+  flashDuration: 0.08
+  punchAmount: 0.25
+  punchDuration: 0.2
+  deathDuration: 0.35
 --- !u!1 &7330929706222414236
 GameObject:
   m_ObjectHideFlags: 0

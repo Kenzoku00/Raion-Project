@@ -15,5 +15,6 @@ MonoBehaviour:
   type: 3
   title: Weapon Level Buff
   description: Weapon Level +1
+  icon: {fileID: 21300000, guid: dfa02fa9d52b5084e885501939388ea9, type: 3}
   value: 0
   weight: 0.15

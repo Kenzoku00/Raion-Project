@@ -3,9 +3,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class EnemyStats : MonoBehaviour
+public class EnemyStats : MonoBehaviour, IDamageable
 {
     [SerializeField] private EnemyStatsData data;
+    [SerializeField] private float destroyDelay = 0.35f;
 
     public float MaxHealth { get; private set; }
     public float CurrentHealth { get; private set; }
@@ -16,6 +17,7 @@ public class EnemyStats : MonoBehaviour
 
     public int ExpReward => data.expReward;
 
+    public event Action<float> OnDamaged;
     public event Action OnDied;
 
     [Header("Damage Feedback")]
@@ -67,6 +69,7 @@ public class EnemyStats : MonoBehaviour
         if (IsDead) return;
 
         CurrentHealth = Mathf.Max(CurrentHealth - amount, 0f);
+        OnDamaged?.Invoke(amount);
 
         if (amount > 0)
             GameManager.GenerateFloatingText(Mathf.FloorToInt(amount).ToString(), transform);
@@ -117,6 +120,10 @@ public class EnemyStats : MonoBehaviour
         }
 
         Destroy(gameObject);
+        foreach (Collider2D col in GetComponentsInChildren<Collider2D>())
+            col.enabled = false;
+
+        Destroy(gameObject, destroyDelay);
     }
 
     public IEnumerator DamageFlash()
