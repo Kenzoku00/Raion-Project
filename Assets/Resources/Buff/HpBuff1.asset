@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1611fd7dae745d943abfcf64bb4a0af1, type: 3}
-  m_Name: HpBuff_1
+  m_Name: HpBuff1
   m_EditorClassIdentifier: Assembly-CSharp::BuffData
   type: 0
   title: HP Buff

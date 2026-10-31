@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1611fd7dae745d943abfcf64bb4a0af1, type: 3}
-  m_Name: SpdBuff_1 2
+  m_Name: AtkBuff2
   m_EditorClassIdentifier: Assembly-CSharp::BuffData
-  type: 2
-  title: SPD Buff
-  description: SPD +0.25
-  icon: {fileID: 21300000, guid: 6c2bac811bbfd1349b157d563c86472a, type: 3}
-  value: 0.25
-  weight: 1
+  type: 1
+  title: ATK Buff
+  description: ATK +4
+  icon: {fileID: 21300000, guid: efe1511fe9fbfac4d85c01b3ddd97ac6, type: 3}
+  value: 4
+  weight: 0.5
